@@ -383,28 +383,28 @@ Home
                     <div class="col-md-4 res-m-bttm-lg">
                         <div class="box-alt box-dot box-direction box-direction-one">
                             <div class="image-icon">
-                                <img src="images/box-icon-i.png" alt="box-icon">
+                                <img src="{{ asset('main/images/box-icon-i.png') }}" alt="box-icon">
                             </div>
-                            <h5>Download a Wallet</h5>
-                            <p>Download an app dolorts adipis sit ametcon sectetur.</p>
+                            <h5>Sign up</h5>
+                            <p>Create an account and fill in all relevant details.</p>
                         </div>
                     </div>
                     <div class="col-md-4 res-m-bttm-lg">
                         <div class="box-alt box-dot box-direction box-direction-two">
                             <div class="image-icon">
-                                <img src="images/box-icon-j.png" alt="box-icon">
+                                <img src="{{ asset('main/images/box-icon-j.png') }}" alt="box-icon">
                             </div>
                             <h5>Add Bitcoin to a Walet</h5>
-                            <p>Once your wallet is  dolorts adipis sit ametcon sectetur.</p>
+                            <p>Include your bitcoin/Ethereum wallet upon signing up</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="box-alt box-dot">
                             <div class="image-icon">
-                                <img src="images/box-icon-k.png" alt="box-icon">
+                                <img src="{{ asset('main/images/box-icon-k.png') }}" alt="box-icon">
                             </div>
-                            <h5>Send/Receive with Wallet</h5>
-                            <p>The Process of sending dolorts adipis sit ametcon sectetur.</p>
+                            <h5>Start Investing</h5>
+                            <p>Login and start investing</p>
                         </div>
                     </div>
                 </div>
