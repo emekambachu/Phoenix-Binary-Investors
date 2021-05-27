@@ -5,23 +5,24 @@
 @endsection
 
 @section('contents')
-    <div class="banner-area" id="banner-area" style="background-image:url({{ asset('header.jpg') }});">
+    <div class="page-head section row-vm light has-bg-image">
+        <div class="imagebg bg-image-loaded"
+             style="background-image: url(&quot;{{ asset('main/images/page-inside-bg.jpg') }}&quot;);">
+            <img src="{{ asset('main/images/page-inside-bg.jpg') }}" alt="page-head">
+        </div>
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col">
-                    <div class="banner-heading">
-                        <h2 class="banner-title">Registration Complete</h2>
-                        <ol class="breadcrumb">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <h2>Registration Complete</h2>
+                    <div class="page-breadcrumb">
+                        <ul class="breadcrumb">
                             <li><a href="{{ url('/') }}">Home</a></li>
-                            <li>Registration Complete</li>
-                        </ol>
+                            <li class="active"><span>Registration complete</span></li>
+                        </ul>
                     </div>
                 </div>
-                <!-- Col end-->
             </div>
-            <!-- Row end-->
         </div>
-        <!-- Container end-->
     </div>
 
     <section class="main-container" id="main-container">
