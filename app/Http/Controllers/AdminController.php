@@ -80,9 +80,9 @@ class AdminController extends Controller
         ];
 
         Mail::send('emails.users.verify-user', $data, static function ($message) use ($data) {
-            $message->from('support@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
+            $message->from('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->to($data['email'], $data['name'])->cc('support@phoenixbinaryinvestors.com');
-            $message->replyTo('support@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
+            $message->replyTo('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->subject($data['status'] === 'activated' ? 'Your Account has been activated' : 'Your Account has been deactivated');
         });
 
@@ -156,9 +156,9 @@ class AdminController extends Controller
         ];
 
         Mail::send('emails.fund-wallet', $data, static function ($message) use ($data) {
-            $message->from('support@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
+            $message->from('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->to($data['email'], $data['name'])->cc('support@phoenixbinaryinvestors.com');
-            $message->replyTo('support@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
+            $message->replyTo('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->subject('Credit Transfer of $' . number_format($data['amount']) . ' From Investment');
         });
 
@@ -201,9 +201,9 @@ class AdminController extends Controller
         ];
 
         Mail::send('emails.add-profit', $data, static function ($message) use ($data) {
-            $message->from('info@bit-farms.ltd', 'Phoenix Binary Investors');
+            $message->from('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->to($data['email'], $data['name'])->cc('support@phoenixbinaryinvestors.com');
-            $message->replyTo('info@bit-farms.ltd', 'Phoenix Binary Investors');
+            $message->replyTo('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->subject('Credit Transfer of $' . number_format($data['amount']) . ' on profit');
         });
 
@@ -249,9 +249,9 @@ class AdminController extends Controller
         ];
 
         Mail::send('emails.add-commission', $data, static function ($message) use ($data) {
-            $message->from('info@bit-farms.ltd', 'Phoenix Binary Investors');
+            $message->from('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->to($data['email'], $data['name'])->cc('support@phoenixbinaryinvestors.com');
-            $message->replyTo('info@bit-farms.ltd', 'Phoenix Binary Investors');
+            $message->replyTo('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->subject('Credit Transfer of $' . number_format($data['amount']) . ' on commission');
         });
 
@@ -297,9 +297,9 @@ class AdminController extends Controller
         ];
 
         Mail::send('emails.add-bonus', $data, static function ($message) use ($data) {
-            $message->from('info@bit-farms.ltd', 'Phoenix Binary Investors');
+            $message->from('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->to($data['email'], $data['name'])->cc('support@phoenixbinaryinvestors.com');
-            $message->replyTo('info@bit-farms.ltd', 'Phoenix Binary Investors');
+            $message->replyTo('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->subject('Credit Transfer of $' . number_format($data['amount']) . ' on bonus');
         });
 
@@ -343,9 +343,9 @@ class AdminController extends Controller
         ];
 
         Mail::send('emails.investments.approve-investment', $data, static function ($message) use ($data) {
-            $message->from('support@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
+            $message->from('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->to($data['email'], $data['name'])->cc('support@phoenixbinaryinvestors.com');
-            $message->replyTo('support@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
+            $message->replyTo('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->subject($data['status']);
         });
 
@@ -437,9 +437,9 @@ class AdminController extends Controller
         ];
 
         Mail::send('emails.approve-withdrawal', $data, static function ($message) use ($data) {
-            $message->from('support@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
+            $message->from('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->to($data['email'], $data['name'])->cc('support@phoenixbinaryinvestors.com');
-            $message->replyTo('support@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
+            $message->replyTo('info@phoenixbinaryinvestors.com', 'Phoenix Binary Investors');
             $message->subject($data['status']);
         });
 
