@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <section class="main-container" id="main-container">
+    <div class="section section-pad">
         <!-- container end-->
         <div class="gap-60"></div>
         <div class="ts-form" id="ts-form">
@@ -51,5 +51,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection
