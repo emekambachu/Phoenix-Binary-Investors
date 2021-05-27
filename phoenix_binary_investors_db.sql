@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: May 25, 2021 at 07:15 AM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Host: localhost:3306
+-- Generation Time: May 27, 2021 at 06:10 AM
+-- Server version: 10.3.28-MariaDB-log-cll-lve
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bitfarms_ltd`
+-- Database: `phoegzju_db`
 --
 
 -- --------------------------------------------------------
@@ -28,9 +28,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `admins`
 --
 
-DROP TABLE IF EXISTS `admins`;
-CREATE TABLE IF NOT EXISTS `admins` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admins` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -38,18 +37,15 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `admins_email_unique` (`email`),
-  UNIQUE KEY `admins_username_unique` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admins`
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `username`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin@email.com', 'admin', NULL, '$2y$10$S8hZJtoese8GqnpYC9eDW.0rwYePezyCQ6i8pJJQxsR.bhIIccuSC', NULL, NULL, '2020-12-23 11:29:14');
+(1, 'Administrator', 'admin@email.com', 'admin', NULL, '$2y$10$IHFbw8.KHJQZ4RB3khJ80Og72IrS8OgKfyJsQDPnBmIyuGV9.Htgy', 'SZRAxn2yTTFThdTY6yEaNHxEFtiYMsFs8KG0jypRXiW3UVJq4naedfMwe1nm', NULL, '2021-05-26 21:22:45');
 
 -- --------------------------------------------------------
 
@@ -57,16 +53,14 @@ INSERT INTO `admins` (`id`, `name`, `email`, `username`, `email_verified_at`, `p
 -- Table structure for table `admin_wallet_addresses`
 --
 
-DROP TABLE IF EXISTS `admin_wallet_addresses`;
-CREATE TABLE IF NOT EXISTS `admin_wallet_addresses` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin_wallet_addresses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admin_wallet_addresses`
@@ -85,15 +79,13 @@ INSERT INTO `admin_wallet_addresses` (`id`, `name`, `address`, `image`, `created
 -- Table structure for table `failed_jobs`
 --
 
-DROP TABLE IF EXISTS `failed_jobs`;
-CREATE TABLE IF NOT EXISTS `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -102,9 +94,8 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
 -- Table structure for table `investments`
 --
 
-DROP TABLE IF EXISTS `investments`;
-CREATE TABLE IF NOT EXISTS `investments` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `investments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `invest_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `investment_package_id` int(10) UNSIGNED DEFAULT NULL,
   `cryptocurrency` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -112,11 +103,8 @@ CREATE TABLE IF NOT EXISTS `investments` (
   `amount` int(11) NOT NULL,
   `is_approved` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `investments_investment_package_id_index` (`investment_package_id`),
-  KEY `investments_user_id_index` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `investments`
@@ -132,9 +120,8 @@ INSERT INTO `investments` (`id`, `invest_id`, `investment_package_id`, `cryptocu
 -- Table structure for table `investment_packages`
 --
 
-DROP TABLE IF EXISTS `investment_packages`;
-CREATE TABLE IF NOT EXISTS `investment_packages` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `investment_packages` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `min` int(11) DEFAULT NULL,
   `max` int(11) DEFAULT NULL,
@@ -151,9 +138,8 @@ CREATE TABLE IF NOT EXISTS `investment_packages` (
   `compound_roi` varchar(190) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `investment_packages`
@@ -170,13 +156,11 @@ INSERT INTO `investment_packages` (`id`, `name`, `min`, `max`, `referral_bonus`,
 -- Table structure for table `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
-CREATE TABLE IF NOT EXISTS `migrations` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `batch` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -199,12 +183,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Table structure for table `password_resets`
 --
 
-DROP TABLE IF EXISTS `password_resets`;
-CREATE TABLE IF NOT EXISTS `password_resets` (
+CREATE TABLE `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`)
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -213,17 +195,15 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 -- Table structure for table `transactions`
 --
 
-DROP TABLE IF EXISTS `transactions`;
-CREATE TABLE IF NOT EXISTS `transactions` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `transactions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
   `debit` int(11) DEFAULT NULL,
   `credit` int(11) DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `transactions`
@@ -260,40 +240,35 @@ INSERT INTO `transactions` (`id`, `user_id`, `debit`, `credit`, `description`, `
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password_backup` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `valid_id` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `wallet_id` int(10) UNSIGNED NOT NULL,
   `mobile` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `country` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `state` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bitcoin_wallet` varchar(190) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bitcoin_wallet` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ethereum_wallet` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 0,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`),
-  KEY `users_wallet_id_index` (`wallet_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `password_backup`, `image`, `valid_id`, `wallet_id`, `mobile`, `country`, `state`, `address`, `bitcoin_wallet`, `ethereum_wallet`, `is_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(10, 'Dexter Neutron', 'ching@nourishingafrica.com', NULL, '$2y$10$jDKlmm1ZuMuSO.aieU0Dwe91IvqDtvU17ACKfEHh4VxB6bCPMp/sC', '11111111', '1602805343WhatsApp Image 2020-09-24 at 11.20.41 AM.jpeg', NULL, 13, NULL, 'Australia', 'South Australia', NULL, NULL, NULL, 1, NULL, '2020-10-15 22:42:23', '2020-10-15 23:11:18'),
-(12, 'Emy Sedde', 'chidng@nourishingafrica.com', NULL, '$2y$10$a6OjlENpUt7zdN7SL9.7O.dMUeHYLJ6mcTuD8digyZYnuZFCrk5Vu', '11111111', '1602968296teju_intense.png', NULL, 15, NULL, 'Ashmore and Cartier Island', 'Ashmore and Cartier Island', NULL, NULL, NULL, 0, NULL, '2020-10-17 19:58:16', '2020-10-17 19:58:16'),
-(11, 'Emy Mba', 'xeddtech@gmail.com', NULL, '$2y$10$k8x4grjIBP07hnCRvRJbuOtqSs/p21Z7h53HXMW3m9g3pdc8U/qhG', '11111111', '1602805547262d208f065b212aa9a40f3b92e04179.jpg', NULL, 14, NULL, 'Armenia', 'Lorri', NULL, 'rirnrpr epenrperner rjrprnrjror', '[kon;nmnl;m', 1, '3ArgoWa0nAvyQMyhV2o96jAgWWhEMoyd6Tm5WjZ7t7zN24CbznYGIEnLQlad', '2020-10-15 22:45:47', '2021-05-25 05:43:43');
+(11, 'Emy Mba', 'xeddtech@gmail.com', NULL, '$2y$10$k8x4grjIBP07hnCRvRJbuOtqSs/p21Z7h53HXMW3m9g3pdc8U/qhG', '11111111', '1602805547262d208f065b212aa9a40f3b92e04179.jpg', NULL, 14, NULL, 'Armenia', 'Lorri', NULL, 'rirnrpr epenrperner rjrprnrjror', '[kon;nmnl;m', 1, '3ArgoWa0nAvyQMyhV2o96jAgWWhEMoyd6Tm5WjZ7t7zN24CbznYGIEnLQlad', '2020-10-15 22:45:47', '2021-05-25 05:43:43'),
+(15, 'Emeka Mbachu', 'neutrondeveloper@gmail.com', NULL, '$2y$10$gdeKvaKelH23TH6wzVc.BOiyoSUWnzMvQH/8CcZdzMUzAQnJxureG', '11111111', '1622102631181928316_255974172935640_2235694839840283790_n.jpg', NULL, 19, '111111111111', 'Armenia', 'Lorri', 'Address and stuff', 'rrg[ergnpnrnerpnew;wenpnwpnow r', NULL, 1, NULL, '2021-05-27 12:03:51', '2021-05-27 12:03:51');
 
 -- --------------------------------------------------------
 
@@ -301,17 +276,15 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `pa
 -- Table structure for table `wallets`
 --
 
-DROP TABLE IF EXISTS `wallets`;
-CREATE TABLE IF NOT EXISTS `wallets` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `wallets` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `amount` int(11) NOT NULL DEFAULT 0,
   `profit` int(11) DEFAULT 0,
   `commission` int(11) DEFAULT 0,
   `bonus` int(12) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `wallets`
@@ -325,9 +298,13 @@ INSERT INTO `wallets` (`id`, `amount`, `profit`, `commission`, `bonus`, `created
 (7, 0, 0, 0, 0, '2020-10-04 05:59:23', '2020-10-04 05:59:23'),
 (6, 723, 0, 0, 0, '2020-06-03 21:51:09', '2020-06-13 10:08:47'),
 (12, 0, 0, 0, 0, '2020-10-15 22:39:25', '2020-10-15 22:39:25'),
-(13, 0, 0, 0, 0, '2020-10-15 22:42:23', '2020-10-15 22:42:23'),
+(13, 0, 500, 0, 0, '2020-10-15 22:42:23', '2021-05-26 13:59:32'),
 (14, 0, 400, 0, 0, '2020-10-15 22:45:47', '2020-11-15 11:29:29'),
-(15, 800, 500, 300, 0, '2020-10-17 19:58:16', '2021-03-17 21:56:01');
+(15, 800, 500, 300, 0, '2020-10-17 19:58:16', '2021-03-17 21:56:01'),
+(16, 0, 0, 0, 0, '2021-05-27 11:27:59', '2021-05-27 11:27:59'),
+(17, 0, 0, 0, 0, '2021-05-27 11:52:20', '2021-05-27 11:52:20'),
+(18, 0, 0, 0, 0, '2021-05-27 12:01:56', '2021-05-27 12:01:56'),
+(19, 0, 0, 0, 0, '2021-05-27 12:03:51', '2021-05-27 12:03:51');
 
 -- --------------------------------------------------------
 
@@ -335,18 +312,15 @@ INSERT INTO `wallets` (`id`, `amount`, `profit`, `commission`, `bonus`, `created
 -- Table structure for table `withdrawals`
 --
 
-DROP TABLE IF EXISTS `withdrawals`;
-CREATE TABLE IF NOT EXISTS `withdrawals` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `withdrawals` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `bitcoin_address` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `amount` int(11) NOT NULL,
   `is_approved` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `withdrawals_user_id_index` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `withdrawals`
@@ -358,6 +332,147 @@ INSERT INTO `withdrawals` (`id`, `user_id`, `bitcoin_address`, `amount`, `is_app
 (3, 5, '', 230, 1, '2020-07-20 13:41:19', '2020-07-20 15:57:52'),
 (4, 5, 'kkkkkkkkkkkkkkkkkkkkkkkkkkk', 50, 0, '2020-09-20 21:17:59', '2020-09-20 21:17:59'),
 (5, 5, 'kkkkkkkkkkkkkkkkkkkkkkkkkkk', 344, 0, '2020-10-15 14:07:44', '2020-10-15 14:07:44');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admins_email_unique` (`email`),
+  ADD UNIQUE KEY `admins_username_unique` (`username`);
+
+--
+-- Indexes for table `admin_wallet_addresses`
+--
+ALTER TABLE `admin_wallet_addresses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `investments`
+--
+ALTER TABLE `investments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `investments_investment_package_id_index` (`investment_package_id`),
+  ADD KEY `investments_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `investment_packages`
+--
+ALTER TABLE `investment_packages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD KEY `users_wallet_id_index` (`wallet_id`);
+
+--
+-- Indexes for table `wallets`
+--
+ALTER TABLE `wallets`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `withdrawals`
+--
+ALTER TABLE `withdrawals`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `withdrawals_user_id_index` (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `admin_wallet_addresses`
+--
+ALTER TABLE `admin_wallet_addresses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `investments`
+--
+ALTER TABLE `investments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `investment_packages`
+--
+ALTER TABLE `investment_packages`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `wallets`
+--
+ALTER TABLE `wallets`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `withdrawals`
+--
+ALTER TABLE `withdrawals`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
