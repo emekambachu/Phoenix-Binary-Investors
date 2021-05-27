@@ -4,7 +4,7 @@
     Registration Complete
 @endsection
 
-@section('contents')
+@section('content')
     <div class="page-head section row-vm light has-bg-image">
         <div class="imagebg bg-image-loaded"
              style="background-image: url(&quot;{{ asset('main/images/page-inside-bg.jpg') }}&quot;);">
