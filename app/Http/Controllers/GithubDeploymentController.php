@@ -30,14 +30,16 @@ class GithubDeploymentController extends Controller
             $output .= "<span style=\"color: #6BE234;\">\$</span> <span style=\"color: #729FCF;\">{$command}\n</span>";
             $output .= htmlentities(trim($tmp)) . "\n";
         }
-		
+
 		Artisan::call('route:clear');
         dump(Artisan::output());
         Artisan::call('cache:clear');
         dump(Artisan::output());
         Artisan::call('view:clear');
         dump(Artisan::output());
-		
+        Artisan::call('config:clear');
+        dump(Artisan::output());
+
         return $output;
     }
 }
