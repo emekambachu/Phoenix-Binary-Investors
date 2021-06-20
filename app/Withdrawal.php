@@ -13,7 +13,9 @@ class Withdrawal extends Model
      */
     protected $fillable = [
         'user_id',
-        'bitcoin_address',
+        'type',
+        'cryptocurrency',
+        'cryptocurrency_address',
         'amount',
         'is_approved',
     ];

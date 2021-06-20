@@ -28,7 +28,7 @@
                                             <th scope="col">Email</th>
                                             <th scope="col">Wallet Balance</th>
                                             <th scope="col">Amount</th>
-                                            <th scope="col">Bitcoin Address</th>
+                                            <th scope="col">Cryptocurrency</th>
                                             <th scope="col">Date</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Action</th>
@@ -44,7 +44,10 @@
                                                         ${{ $withdraw->user->wallet->amount }}
                                                     </td>
                                                     <td>${{ $withdraw->amount }}</td>
-                                                    <td>{{ $withdraw->bitcoin_address }}</td>
+                                                    <td>
+                                                        {{ $withdraw->cryptocurrency }}<br>
+                                                        {{ $withdraw->cryptocurrency_address }}
+                                                    </td>
                                                     <td>{{ $withdraw->created_at->format('d M Y') }}</td>
                                                     <td>{{ $withdraw->is_approved ? 'Approved' : 'Pending' }}</td>
                                                     <td>

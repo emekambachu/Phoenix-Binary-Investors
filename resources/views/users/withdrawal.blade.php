@@ -28,12 +28,25 @@
                         </div>
                     </div>
                     <div class="widget-content widget-content-area">
-                        <form method="post" action="{{ url('users/withdraw-amount') }}">
+                        <form method="post" action="{{ route('user.withdraw-balance.submit') }}">
                             @csrf
                             <div class="form-group mb-3">
+                                <label for="validationDefault01">Cryptocurrency</label>
+                                <select name="cryptocurrency" class="form-control" required>
+                                    <option value="">Select</option>
+                                    <option value="BTC">BTC</option>
+                                    <option value="ETH">ETH</option>
+                                    <option value="TRON">TRON</option>
+                                    <option value="BNB">BNB</option>
+                                    <option value="TRX">TRX</option>
+                                    <option value="XRP">XRP</option>
+                                    <option value="LTC">LTC</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
                                 <label for="validationDefault01">Bitcoin Address</label>
-                                <input name="bitcoin_address" type="text" class="form-control" id="validationDefault01"
-                                       value="{{ Auth::user()->bitcoin_wallet }}" required="">
+                                <input name="cryptocurrency_address" type="text" class="form-control"
+                                       id="validationDefault01" required="">
                             </div>
                             <div class="form-group mb-4">
                                 <label for="validationDefault01">Amount</label>

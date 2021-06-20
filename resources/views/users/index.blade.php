@@ -157,6 +157,9 @@
                             <div class="w-info">
                                 <h6 class="value">$ {{ number_format($user->wallet->amount) }}</h6>
                                 <p class="">Balance</p>
+                                <a class="btn btn-primary" href="{{ route('user.withdraw-balance') }}">
+                                    Withdraw
+                                </a>
                             </div>
                         </div>
 {{--                        <div class="progress">--}}

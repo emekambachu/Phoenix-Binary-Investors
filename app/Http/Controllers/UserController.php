@@ -78,7 +78,7 @@ class UserController extends Controller
             compact('user', 'investments', 'totalInvestments', 'recentInvestment', 'total_withdrawals', 'transactions', 'stopMiningTime', 'miningApprovedTime', 'now', 'myInvestments'));
     }
 
-    public function withdrawal(){
+    public function withdrawBalance(){
 
         // Check if users is logged in
         if(Auth::check()){
@@ -90,7 +90,7 @@ class UserController extends Controller
         return view('users.withdrawal', compact('user'));
     }
 
-    public function withdrawAmount(Request $request){
+    public function withdrawBalanceSubmit(Request $request){
 
         if($request->input('amount') > Auth::user()->wallet->amount){
             //session notification
@@ -100,8 +100,8 @@ class UserController extends Controller
 
         $withdraw = Withdrawal::create([
             'user_id' => Auth::user()->id,
-            'bitcoin_wallet' => $request->input('bitcoin_wallet'),
-            'ethereum_wallet' => $request->input('ethereum_wallet'),
+            'cryptocurrency' => $request->input('cryptocurrency'),
+            'cryptocurrency_address' => $request->input('cryptocurrency_address'),
             'amount' => $request->input('amount'),
             'is_approved' => 0,
         ]);

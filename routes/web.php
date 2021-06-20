@@ -1,6 +1,7 @@
 <?php
 
 use App\Admin;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -81,8 +82,10 @@ Route::get('users/account-settings', 'UserController@accountSettings');
 Route::post('users/update-account', 'UserController@updateAccount');
 
 // Withdrawal
-Route::get('users/withdrawal', 'UserController@withdrawal');
-Route::post('users/withdraw-amount', 'UserController@withdrawAmount');
+Route::get('user/withdraw/balance', [UserController::class, 'withdrawBalance'])
+    ->name('user.withdraw-balance');
+Route::post('user/withdraw/balance/submit', [UserController::class, 'withdrawBalanceSubmit'])
+    ->name('user.withdraw-balance.submit');
 
 // Admin Section
 // Login Page
