@@ -9,45 +9,11 @@
         <div class="container-fluid">
 
             <div class="row">
-
                 <div class="col-12 center">
                     @include('includes.alerts')
                 </div>
 
-{{--                <div class="col-sm-12 col-lg-6">--}}
-{{--                    <div class="iq-card">--}}
-
-{{--                        <div class="iq-card-header d-flex justify-content-between">--}}
-{{--                            <div class="iq-header-title">--}}
-{{--                                <h4 class="card-title">Update your Bitcoin Address</h4>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="iq-card-body">--}}
-{{--                            <form method="post" action="{{ route('admin.update.wallet-address') }}" enctype="multipart/form-data">--}}
-{{--                                @csrf--}}
-{{--                                @method('PUT')--}}
-{{--                                <div class="form-row">--}}
-{{--                                    <div class="col-md-6 mb-3">--}}
-{{--                                        <label for="validationDefault01">Wallet Address</label>--}}
-{{--                                        <input name="address" type="text" class="form-control mb-3"--}}
-{{--                                               value="{{ !empty($wallet->address) ? $wallet->address : ''}}"--}}
-{{--                                               id="validationDefault01" required="">--}}
-
-{{--                                        <label for="validationDefault01">Barcode</label>--}}
-{{--                                        <input name="image" type="file" class="form-control">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <button class="btn brand-color" type="submit">Update</button>--}}
-{{--                                </div>--}}
-{{--                            </form>--}}
-{{--                        </div>--}}
-
-{{--                    </div>--}}
-{{--                </div>--}}
-
-                <div class="col-sm-12 col-lg-12">
+                <div class="col-sm-12 col-lg-4">
                     <div class="iq-card">
 
                         <div class="iq-card-header d-flex justify-content-between">
@@ -87,8 +53,58 @@
                     </div>
                 </div>
 
+                <div class="col-sm-12 col-lg-8">
+                    <div class="iq-card">
 
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title">Your Bitcoin Address</h4>
+                            </div>
+                        </div>
 
+                        <form method="post" action="{{ route('admin.wallet-address.store') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row p-3">
+                                <div class="col-12">
+                                    <h4>Add cryptocurrency address</h4>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <label>Currency Name</label>
+                                    <input type="text" class="form-control" name="name">
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <label>Currency Address</label>
+                                    <input type="text" class="form-control" name="address">
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <label>Barcode Image</label>
+                                    <input class="form-control" type="file" name="image">
+                                </div>
+                                <button class="btn btn-primary ml-3 mt-2" type="submit">Submit</button>
+                            </div>
+                        </form>
+
+                        <div class="row">
+                            @foreach($walletAddress as $address)
+                            <div class="col-md-6 col-sm-12">
+                                <div class="iq-card-body">
+                                <img src="{{ asset('photos/'.$address->image) }}" width="180"/>
+                                <h5>{{ $address->name }}</h5>
+                                <p>{{ $address->address }}</p>
+                                    <a class="btn btn-primary"
+                                       href="{{ route('admin.wallet-address.edit', $address->id) }}">Edit</a>
+                                    <form method="post" action="{{ route('admin.wallet-address.delete', $address->id) }}">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger float-left">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
         </div>

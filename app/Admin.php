@@ -20,6 +20,7 @@ class Admin extends Authenticatable
     protected $fillable = [
         'name',
         'username',
+        'role',
         'password',
     ];
 
@@ -32,4 +33,8 @@ class Admin extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function adminWalletAddresses(){
+        return $this->hasMany(AdminWalletAddress::class, 'admin_id', 'id');
+    }
 }

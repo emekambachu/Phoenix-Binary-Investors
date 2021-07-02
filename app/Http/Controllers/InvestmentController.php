@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use App\AdminWalletAddress;
 use App\Investment;
 use App\InvestmentPackage;
@@ -54,7 +55,7 @@ class InvestmentController extends Controller
             return redirect()->route('login');
         }
 
-        $walletAddresses = AdminWalletAddress::all();
+        $walletAddresses = Admin::with('adminWalletAddresses')->where('role', 'super-admin')->first();
 
         $packages = InvestmentPackage::all();
         return view('users.investments.create', compact('packages', 'user', 'walletAddresses'));
@@ -88,6 +89,7 @@ class InvestmentController extends Controller
             'investment_package_id' => $package->id,
             'user_id' => Auth::user()->id,
             'amount' => $input['amount'],
+            'cryptocurrency' => $input['cryptocurrency'],
             'is_approved' => 0,
         ]);
 
@@ -97,6 +99,7 @@ class InvestmentController extends Controller
             'investment_id' => $investment->invest_id,
             'investment_package' => $investment->investmentPackage->name,
             'amount' => $investment->amount,
+            'cryptocurrency' => $investment->cryptocurrency,
             'status' => $investment->is_approved,
             'name' => Auth::user()->name,
             'email' => Auth::user()->email,

@@ -103,6 +103,9 @@ Route::get('admin/dashboard', 'AdminController@index')->name('admin-dashboard');
 //Admin Manage Users Page
 Route::get('admin/manage-users', 'AdminController@manageUsers')->name('manage-users');
 
+Route::get('admin/download/valid-id/{id}/{name}', 'AdminController@downloadFile')
+    ->name('admin.download.valid-id');
+
 // Admin Approve User
 Route::post('admin/approve-users/{id}', ['uses' => 'AdminController@approveUser']);
 
@@ -164,8 +167,14 @@ Route::put('admin/update-account', 'AdminController@updateAdminAccount')
     ->name('admin.update-account');
 
 // Admin update Wallet Address
-Route::put('admin/wallet-address/update', ['uses' => 'AdminController@updateWalletAddress'])
-    ->name('admin.update.wallet-address');
+Route::post('admin/wallet-address/store', ['uses' => 'AdminController@storeWalletAddress'])
+    ->name('admin.wallet-address.store');
+Route::get('admin/wallet-address/{id}/edit', ['uses' => 'AdminController@editWalletAddress'])
+    ->name('admin.wallet-address.edit');
+Route::put('admin/wallet-address/{id}/update', ['uses' => 'AdminController@updateWalletAddress'])
+    ->name('admin.wallet-address.update');
+Route::delete('admin/wallet-address/{id}/delete', ['uses' => 'AdminController@deleteWalletAddress'])
+    ->name('admin.wallet-address.delete');
 
 // Github Deployment
 // Must disable csrf in Http/Middleware/VerifyCsrfToken

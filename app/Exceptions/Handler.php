@@ -66,13 +66,14 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Auth\AuthenticationException  $exception
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        if ($request->expectsJson()) {
-            return response()->json(['error' => 'Unauthenticated.'],401);
+        if ($request->is('admin') || $request->is('admin/*')) {
+            return redirect()->guest(route('admin-login'));
         }
-        return redirect(route(auth()->guard('admin')->check() ? 'auth.admin-login' : 'login'));
+
+        return redirect()->guest(route('login'));
     }
 }

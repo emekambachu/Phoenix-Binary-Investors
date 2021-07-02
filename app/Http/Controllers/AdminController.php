@@ -315,6 +315,14 @@ class AdminController extends Controller
         return view('admin.manage-investments', compact('investments'));
     }
 
+    public function downloadFile($id, $name){
+        $document = User::findOrFail($id);
+        $path = public_path(). '/photos/' . $name;
+//        return response()->download($path, $document->original_filename, ['Content-Type' => $document->mime]);
+        // view in browser
+        return response()->file($path, ['Content-Type' => $document->mime]);
+    }
+
     public function approveInvestment(Request $request, $id){
 
         $investment = Investment::find($id);
@@ -449,9 +457,9 @@ class AdminController extends Controller
 
     public function adminAccountSettings(){
 
-        $wallet = AdminWalletAddress::where('id', 1)->get()->first();
+        $walletAddress = AdminWalletAddress::where('admin_id', Auth::user()->id)->get();
 
-        return view('admin.account-settings', compact('wallet'));
+        return view('admin.account-settings', compact('walletAddress'));
     }
 
     public function updateAdminAccount(Request $request){
@@ -473,32 +481,77 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function updateWalletAddress(Request $request){
+    public function storeWalletAddress(Request $request){
 
-        $input = $request->except('_token', '_method');
-
+        $input = $request->all();
         //Get Image
-        if(($file = request()->file('image'))) {
+        if($request->hasFile('image') && $file = request()->file('image')) {
 
             if(!File::exists('photos')) {
                 // create path
                 File::makeDirectory('photos', $mode = 0777, true, true);
             }
-
             // Add current time in seconds to image
             $name = time() . $file->getClientOriginalName();
-
             //Move image to photos directory
             $file->move('photos', $name);
-
             $input['image'] = $name;
         }
 
+        AdminWalletAddress::create([
+            'name' => $input['name'],
+            'address' => $input['address'],
+            'image' => $input['image'] ?? '',
+            'role' => 'super-admin',
+            'admin_id' => Auth::user()->id,
+        ]);
+
+        Session::flash('success', 'Your Wallet Address is Updated');
+        return redirect()->back();
+    }
+
+    public function editWalletAddress($id){
+
+        $address = AdminWalletAddress::findOrFail($id);
+
+        return view('admin.edit-wallet-address', compact('address'));
+    }
+
+    public function updateWalletAddress(Request $request, $id){
+
+        $address = AdminWalletAddress::findOrFail($id);
+        $input = $request->except('_method', '_token');
+
+        //Get Image
+        if($request->hasFile('image') && $file = request()->file('image')) {
+
+            if(!File::exists('photos')) {
+                // create path
+                File::makeDirectory('photos', $mode = 0777, true, true);
+            }
+            // Add current time in seconds to image
+            $name = time() . $file->getClientOriginalName();
+            //Move image to photos directory
+            $file->move('photos', $name);
+            $input['image'] = $name;
+        }else{
+            $input['image'] = $address->image;
+        }
+
         AdminWalletAddress::where([
-            ['id', '=', 1]
+            ['id', '=', $address->id]
         ])->update($input);
 
-        Session::flash('success', 'Your Bitcoin Wallet Address is Updated');
+        Session::flash('success', 'Your Wallet Address is Updated');
+        return redirect()->back();
+    }
+
+    public function deleteWalletAddress($id){
+
+        $address = AdminWalletAddress::findOrFail($id);
+        $address->delete();
+
+        Session::flash('warning', 'Deleted');
         return redirect()->back();
     }
 }

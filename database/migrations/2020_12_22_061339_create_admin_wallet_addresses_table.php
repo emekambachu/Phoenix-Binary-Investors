@@ -15,6 +15,7 @@ class CreateAdminWalletAddressesTable extends Migration
     {
         Schema::create('admin_wallet_addresses', static function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('admin_id');
             $table->string('address');
             $table->text('image')->nullable();
             $table->timestamps();

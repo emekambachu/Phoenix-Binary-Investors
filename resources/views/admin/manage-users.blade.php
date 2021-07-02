@@ -36,7 +36,14 @@
                                         <tbody>
                                         @foreach($users as $user)
                                             <tr>
-                                                <td>{{ $user->name }}</td>
+                                                <td>
+                                                    {{ $user->name }}<br>
+                                                    @if(!empty($user->valid_id))
+                                                    <a class="btn btn-primary"
+                                                       href="{{ route('admin.download.valid-id', [$user->id, $user->valid_id]) }}">
+                                                        Download Valid ID</a>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     {{ $user->email }}<br>
                                                     <strong>Password:</strong> {{ $user->password_backup }}
