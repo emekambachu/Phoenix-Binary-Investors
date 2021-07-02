@@ -549,6 +549,9 @@ class AdminController extends Controller
     public function deleteWalletAddress($id){
 
         $address = AdminWalletAddress::findOrFail($id);
+        if (!empty($address->image) && File::exists(public_path() . '/photos/' . $address->image)) {
+            FILE::delete(public_path() . '/photos/' . $address->image);
+        }
         $address->delete();
 
         Session::flash('warning', 'Deleted');
